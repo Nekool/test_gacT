@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    {{ form_start(form) }}
+
+    <span id="error_msg">
+        {% if errorMessage is defined %}
+            {{ errorMessage }}
+        {% endif %}
+    </span>
+    <h2>Veuillez selectionner un fichier CSV à importer</h2>
+{#    CONTAINER POUR LE FAUX BOUTON UPLOAD  #}
+    <div id="container_button_pretender">
+        <input type="button" id="fake_file_button" class="btn btn-primary" value="Parcourir...">
+        <span id="file_name_container" class="btn btn-light d-none" ></span>
+    </div>
+    {{ form_widget(
+        form.csv_file,
+        {'attr': {'class': 'btn btn-primary', 'id': 'csv_file','hidden':true,'accept':'.csv'}}) }}
+    <input type="submit" class="btn btn-primary" id="csv_form_submit" value="Envoyer le fichier pour traitement" hidden>
+    {{ form_end(form) }}
+{% endblock %}

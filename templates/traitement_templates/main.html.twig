@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="form_container">
+        {# Retrouver la durée des appell apres date #}
+        {{ form_start(formFindByDate) }}
+            <h6>
+                Retrouver la durée totale réelle des appels effectués après la date :
+            </h6>
+        {{ form_widget(
+            formFindByDate.date,
+            {'attr': {'class': 'form-control','placeholder':"30/12/1999"}}) }}
+            {{ form_widget(
+                formFindByDate.send,
+                {'attr': {'class': 'btn btn-primary','value':"Envoyer"}}) }}
+        {{ form_end(formFindByDate) }}
+        {# Retrouver les plus gros volumes entre 8 et 18h #}
+        {{ form_start(formFindTopTen) }}
+            <h6>
+                Retrouver le TOP 10 des volumes data facturés en dehors de la tranche horaire 8h00-
+                18h00 par abonné:
+            </h6>
+            {{ form_widget(
+                formFindTopTen.send,
+                {'attr': {'class': 'btn btn-primary','value':"Envoyer"}}) }}
+        {{ form_end(formFindTopTen) }}
+        {# Retrouver le total des sms par client #}
+        {{ form_start(formFindTotalSms) }}
+            <h6>
+                Retrouver le total des sms par clients :
+            </h6>
+            {{ form_widget(
+                formFindTotalSms.send,
+                {'attr': {'class': 'btn btn-primary','value':"Envoyer"}}) }}
+        {{ form_end(formFindTotalSms) }}
+    </div>
+<div class="result_container overflow-auto">
+    {% if result is not null and result is defined %}
+        {% if result['origin'] == "FindByDate" %}
+                <h5>Voici la somme du temps des appels passés après le {{ result['date'] }} :</h5>
+                <div class="btn btn-primary font-weight-bold">
+                    {%if result['data'] is not null and result['data'] is defined %}
+                    {{ result['data'] }}
+                    {% else %}
+                        0
+                    {% endif %}
+                </div>
+        {% elseif result['origin'] == "FindTopTen" %}
+            {% include './traitement_templates/table_result_top_ten.html.twig' %}
+        {% elseif result['origin'] == "FindTotalSms" %}
+            {% include './traitement_templates/table_result_total_sms.html.twig' %}
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

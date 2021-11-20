@@ -1,0 +1,51 @@
+body {
+    background-color: #AAAAAA;
+    height: 100vh;
+    margin: 0;
+}
+
+#main_container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    flex-direction: column;
+}
+
+    #main_container form {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-content: center;
+        flex-direction: column;
+        min-height: 300px;
+    }
+    #main_container .form_container{
+        display: flex;
+        justify-content: space-around;
+        width: 50%;
+    }
+    #main_container .form_container form{
+        width: 200px;
+    }
+/*STYLE POUR FAUX BOUTTON FILE*/
+        #main_container #container_button_pretender {
+            display: flex;
+            justify-content: center;
+        }
+
+            #main_container #container_button_pretender .file_loaded_button {
+                border-radius: 0.25rem 0 0 0.25rem;
+            }
+
+            #main_container #container_button_supleent #file_name_container {
+                display: none;
+                border-radius: 0 0.25rem 0.25rem 0;
+            }
+.result_container{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    max-height: 300px;
+}

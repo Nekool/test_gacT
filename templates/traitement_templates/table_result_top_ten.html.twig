@@ -1,0 +1,20 @@
+{#TABLEAU DE RESULTAT TOP TEN#}
+
+<table class="table table-striped table-dark">
+    <thead>
+    <tr>
+        <th>Numero abonne</th>
+        <th>Duré volume réel</th>
+        <th>Numero facture</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for row in result['data'] %}
+        <tr>
+            <td>{{ row['numero_abonne'] }}</td>
+            <td>{{ row['dure_volume_reel'] }}</td>
+            <td>{{ row['numero_facture'] }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
